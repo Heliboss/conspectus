@@ -37,9 +37,7 @@ textarea.addEventListener("keydown", (e) => {
       e.preventDefault();
       mode = "normal";
       moveLeft();
-    } else if (o) {
-      moveLeft();
-      o = false;
+      if (o) moveRight();
     }
     return;
   }
@@ -47,13 +45,10 @@ textarea.addEventListener("keydown", (e) => {
   if (mode === "d") {
     if (e.key === "Escape") {
       mode = "normal";
-      moveLeft();
-      moveRight();
+      renderCaret();
     } else if (e.key === "d") {
       mode = "normal";
       deleteLine();
-      moveLeft();
-      moveRight();
       renderText();
     }
     return;
@@ -61,7 +56,7 @@ textarea.addEventListener("keydown", (e) => {
   switch (e.key) {
     case "a":
       mode = "insert";
-      moveRight();
+      if (textarea.value[textarea.selectionStart] != "\n") moveRight();
       break;
     case "i":
       mode = "insert";
@@ -94,21 +89,22 @@ textarea.addEventListener("keydown", (e) => {
       moveWordForwardEnd();
       break;
     case "o":
+      const newline = textarea.value.indexOf("\n", 0);
+      const before = textarea.value[textarea.selectionStart];
       moveLineEnd();
       mode = "insert";
-      moveRight();
+      if (before != "\n") moveRight();
       enter();
-      if (textarea.value[textarea.selectionStart] === "\n") {
-        moveRight();
-        if (textarea.value[textarea.selectionStart + 1] != undefined) o = true;
-      }
+      if (before != "\n" && newline != -1) moveLeft();
+      if (textarea.value[textarea.selectionStart - 3] != "\n") o = true;
+      renderText();
       break;
     case "O":
-      if (textarea.value[textarea.selectionStart] != "\n") moveLineStart();
-      else moveLineStart(2);
+      moveLineStart();
       mode = "insert";
       enter();
       moveLeft();
+      renderText();
       break;
     case "d":
       mode = "d";
@@ -154,8 +150,9 @@ function moveRight() {
       : right;
   textarea.setSelectionRange(pos, pos);
 }
-function moveLineStart(n = 1) {
+function moveLineStart() {
   const p = textarea.selectionStart;
+  const n = p === 0 ? 0 : 1;
   const start = textarea.value.lastIndexOf("\n", p - 1) + n;
   textarea.setSelectionRange(start, start);
 }
