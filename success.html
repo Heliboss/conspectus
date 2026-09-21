@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conspectus</title>
+<link rel="stylesheet" href="css/index.css">
+<style>
+.success {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.success p {
+  font-size: 18pt;
+}
+.success button {
+  height: 20pt;
+  width: 200px;
+  color: rgb(250, 244, 237);
+  background-color: rgb(86, 148, 159);
+  margin: -10px 0px 0px 0px;
+}
+</style>
+<script src="js/buttons.js"></script>
+</head>
+<body>
+<div class="success">
+  <p id="success-text"></p>
+  <button class="success-button" id="success-button" onclick="home()">Return to home page</button>
+</div>
+<script>
+document.getElementById("success-text").innerText = localStorage.getItem("success");
+</script>
+</body>
+</html>

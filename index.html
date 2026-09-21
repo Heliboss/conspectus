@@ -5,17 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conspectus</title>
 <link rel="stylesheet" href="css/index.css">
+<script src="js/buttons.js"></script>
 </head>
 <body>
 <div class="main">
   <div class="bar">
     <button class="hamburger" id="hamburger">≡</button>
     <div class="credentials">
-      <div>
-        <input type="text" class="username" id="username" name="username" placeholder="Username">
-        <button class="login" id="login">Login</button><br>
-        <input type="text" class="password" id="password" name="password" placeholder="Password">
-        <button class="register" id="register">Register</button><br>
+      <div class="error-login" id="error-login"></div>
+      <div class="username-password" id="username-password">
+        <input type="text" class="username" id="username-login" name="username" placeholder="Username">
+        <button class="login" id="login" onclick="login()">Login</button><br>
+        <input type="password" class="password" id="password-login" name="password" placeholder="Password">
+        <button class="register" id="register" onclick="register(true)">Register</button><br>
+      </div>
+      <div class="logged-in" id="logged-in">
+        <div class="name" id="name"></div>
+        <button class="logout" id="logout" onclick="logout()">Logout</button>
       </div>
       <div class="profile">
         <img src="images/glorp.png">
@@ -51,8 +57,17 @@
     </div>
   </div>
 </div>
-<div class="registration">
-  
+<div class="registration" id="registration">
+  <div class="registration-panel">
+    <button class="registration-panel-x" id="registration-panel-x" onclick="register(false)">X</button>
+    <div class="registration-panel-main">
+      <img src="images/logo.png" class="registration-title">
+      <input type="text" class="username" id="username-register" name="username" placeholder="Username">
+      <input type="password" class="password" id="password-register" name="password" placeholder="Password">
+      <button class="registration-button" id="registration-button" onclick="createAccount()">Create new account</button>
+      <div class="error" id="error"></div>
+    </div>
+  </div>
 </div>
 <div class="saved-documents">
   
@@ -61,5 +76,14 @@
   
 </div>
 <script src="js/quotes.js"></script>
+<script>
+const username = localStorage.getItem("login");
+if (username === null) {
+  document.getElementById("username-password").style.zIndex = 1;
+} else {
+  document.getElementById("logged-in").style.zIndex = 1;
+  document.getElementById("name").innerText = username;
+}
+</script>
 </body>
 </html>

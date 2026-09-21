@@ -2,6 +2,10 @@ body {
   margin: 0px;
   background-color: rgb(250, 244, 237);
 }
+.main {
+  position: absolute;
+  z-index: 1;
+}
 .bar {
   height: 60px;
   background-color: rgb(40, 105, 131);
@@ -21,6 +25,9 @@ body {
   align-items: center;
   gap: 4px;
 }
+.username-password {
+  z-index: -1;
+}
 .username,
 .password {
   background-color: rgb(250, 244, 237);
@@ -28,6 +35,26 @@ body {
 .login,
 .register {
   width: 63px;
+  background-color: rgb(250, 244, 237);
+}
+.logged-in {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 50px;
+  gap: 2px;
+  z-index: -1;
+}
+.name {
+  height: 15pt;
+  background-color: rgb(250, 244, 237);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 1px 0px 0px;
+  border-radius: 2px;
+}
+.logout {
   background-color: rgb(250, 244, 237);
 }
 .profile {
@@ -111,4 +138,59 @@ body {
 }
 .arrow {
   font-size: 22pt;
+}
+.registration {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.registration-panel {
+  display: flex;
+  justify-content: flex-end;
+}
+.registration-panel-x {
+  background-color: rgb(244, 237, 232);
+  position: absolute;
+}
+.registration-panel-main {
+  height: 336px;
+  width: 640px;
+  background-color: rgb(250, 244, 237);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+.registration-panel-main input {
+  height: 10%;
+  width: 80%;
+  font-size: 16px;
+}
+.registration-title {
+  width: 240px;
+  margin: 0px 0px 10px 0px;
+}
+.registration-button {
+  height: 12%;
+  width: 82%;
+  font-size: 16px;
+  color: rgb(250, 244, 237);
+  background-color: rgb(40, 105, 131);
+}
+.error {
+  color: rgb(180, 99, 122);
+  margin: 5px 0px 0px 0px;
+}
+.error-login {
+  height: 30px;
+  color: rgb(180, 99, 122);
+  background-color: rgb(70, 66, 97);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
