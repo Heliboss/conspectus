@@ -33,7 +33,7 @@
       <img class="logo" src="images/logo.png">
       <hr>
       <p class="desc">Conspectus is a free and open-source word processor controlled using vim motions. Documents are stored in plaintext and saved on your account for later access. You can export to PDF or download the unformatted plaintext file to your device.</p>
-      <button class="learn" id="learn">Learn the controls</button>
+      <button class="learn" id="learn" onclick="learn(true)">Learn the controls</button>
       <button class="new" id="new">Create new text document</button>
     </div>
     <div class="top-right">
@@ -72,8 +72,30 @@
 <div class="saved-documents">
   
 </div>
-<div class="vim-motions">
-  
+<div class="vim-motions" id="vim-motions">
+  <div class="vim-motions-panel">
+    <button class="vim-motions-panel-x" id="vim-motions-panel-x" onclick="learn(false)">X</button>
+    <div class="vim-motions-panel-main">
+      <div>
+        <div><span class="c"> h </span> - move cursor left</div>
+        <div><span class="c"> j </span> - move cursor down</div>
+        <div><span class="c"> k </span> - move cursor up</div>
+        <div><span class="c"> l </span> - move cursor right</div>
+        <div><span class="c"> w </span> - jump forwards to the start of a word</div>
+        <div><span class="c"> e </span> - jump forwards to the end of a word</div>
+        <div><span class="c"> b </span> - jump backwards to the start of a word</div>
+        <div><span class="c"> ^ </span> - jump to the start of the line</div>
+        <div><span class="c"> $ </span> - jump to the end of the line</div>
+        <div><span class="c"> i </span> - insert before the cursor</div>
+        <div><span class="c"> a </span> - insert after the cursor</div>
+        <div><span class="c"> o </span> - append a new line below the current line</div>
+        <div><span class="c"> O </span> - append a new line above the current line</div>
+        <div><span class="c"> u </span> - undo</div>
+        <div><span class="c"> CTRL </span> + <span class="c"> r </span> - redo </div>
+        <div><span class="c"> dd </span> - delete a line</div>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="js/quotes.js"></script>
 <script>

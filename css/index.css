@@ -194,3 +194,34 @@ body {
   align-items: center;
   justify-content: center;
 }
+.vim-motions {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vim-motions-panel {
+  display: flex;
+  justify-content: flex-end;
+}
+.vim-motions-panel-x {
+  background-color: rgb(244, 237, 232);
+  position: absolute;
+}
+.vim-motions-panel-main {
+  height: 300px;
+  width: 315px;
+  background-color: rgb(250, 244, 237);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.c {
+  font-family: monospace;
+  white-space: pre;
+  background-color: rgba(0, 0, 0, 0.15)
+}

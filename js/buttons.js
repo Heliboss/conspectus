@@ -56,3 +56,7 @@ function logout() {
   localStorage.setItem("success", "You've successfully logged out.");
   window.location.href = "success.html";
 }
+const learn = (a) =>
+  a
+    ? (document.getElementById("vim-motions").style.zIndex = 2)
+    : (document.getElementById("vim-motions").style.zIndex = 0);
