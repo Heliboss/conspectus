@@ -1,3 +1,5 @@
+const banned = /^(|||)$/;
+const doc = document.getElementById("document");
 const textarea = document.getElementById("textarea-doc");
 const formatted = document.getElementById("formatted-doc");
 const caret = document.getElementById("caret-doc");
@@ -10,7 +12,12 @@ textarea.addEventListener("input", () => {
 textarea.addEventListener("select", renderCaret);
 textarea.addEventListener("keyup", renderCaret);
 function renderText() {
-  formatted.innerHTML = escapeHTML(textarea.value).replace(/\n/g, "<br>");
+  formatted.innerHTML = escapeHTML(textarea.value)
+    .replace(/\n/g, "<br>")
+    .replace(//g, "<b>")
+    .replace(//g, "</b>")
+    .replace(//g, "<i>")
+    .replace(//g, "</i>");
 }
 function renderCaret() {
   const value = textarea.value;
@@ -19,17 +26,26 @@ function renderCaret() {
   const current = value[p];
   const after = value.slice(p);
   caret.innerHTML =
-    `<span class="invis">${escapeHTML(before).replace(/\n/g, "<br>")}</span>` +
+    `<span class="invis">${escapeHTML(before).replace(/\n/g, "<br>").replace(//g, "<b>").replace(//g, "</b>").replace(//g, "<i>").replace(//g, "</i>")}</span>` +
     (mode === "normal"
-      ? `<span class="caret">${current === " " ? "l" : current === "\n" ? "l" : escapeHTML(current)}</span>`
+      ? `<span class="caret" id="caret">${current === " " ? "l" : current === "\n" ? "l" : escapeHTML(current)}</span>`
       : mode === "insert"
         ? "|"
         : "_") +
-    `<span class="invis">${escapeHTML(after).replace(/\n/g, "<br>")}</span>`;
+    `<span class="invis">${escapeHTML(after).replace(/\n/g, "<br>").replace(//g, "<b>").replace(//g, "</b>").replace(//g, "<i>").replace(//g, "</i>")}</span>`;
 }
 function escapeHTML(str) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
+// dynamic resizing
+function resize() {
+  const height = 11.69 * 96;
+  formatted.style.height = "fit-content";
+  const contentHeight = formatted.getBoundingClientRect().height;
+  const pages = Math.max(1, Math.ceil(contentHeight / height));
+  doc.style.height = `${pages * height}px`;
+}
+textarea.addEventListener("input", resize);
 // vim motions
 textarea.addEventListener("keydown", (e) => {
   if (mode === "insert") {
@@ -59,7 +75,8 @@ textarea.addEventListener("keydown", (e) => {
       if (textarea.value[textarea.selectionStart] != "\n") moveRight();
       break;
     case "i":
-      mode = "insert";
+      if (e.ctrlKey) ital();
+      else mode = "insert";
       break;
     case "h":
       moveLeft();
@@ -80,7 +97,8 @@ textarea.addEventListener("keydown", (e) => {
       moveLineEnd();
       break;
     case "b":
-      moveWordBackward();
+      if (e.ctrlKey) bold();
+      else moveWordBackward();
       break;
     case "w":
       moveWordForward();
@@ -96,6 +114,7 @@ textarea.addEventListener("keydown", (e) => {
       if (before != "\n") moveRight();
       enter();
       if (before != "\n" && newline != -1) moveLeft();
+      if (textarea.value[textarea.selectionStart] != "\n") moveRight();
       if (textarea.value[textarea.selectionStart - 3] != "\n") o = true;
       renderText();
       break;
@@ -242,4 +261,17 @@ function deleteLine() {
   textarea.value =
     textarea.value.slice(0, start) + textarea.value.slice(end + n);
   if (textarea.value[textarea.selectionStart] === undefined) moveLeft();
+}
+async function imp() {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = ".txt,text/plain";
+  input.click();
+  input.onchange = async () => {
+    const file = input.files[0];
+    if (!file) return;
+    textarea.value = await file.text();
+    renderText();
+    renderCaret();
+  };
 }

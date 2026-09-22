@@ -4,13 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conspectus</title>
-<link rel="stylesheet" href="css/editor.css">
+<link id="css" rel="stylesheet" href="css/editor.css">
+<script src="js/buttons.js"></script>
 </head>
 <body>
-<div class="menu">
-  test
+<div class="menu" id="menu">
+  <div class="top">
+    <button class="save" id="save" onclick="save()">Save document</button><br>
+    <input type="text" class="save-name" id="save-name" name="save-name" placeholder="Document name">
+    <div class="error" id="error"></div>
+    <button class="export" id="export" onclick="exp()">Export document to PDF</button><br>
+    <button class="bold" id="bold" onclick="bold()">Bold</button><br>
+    <div class="b-indicator" id="b-indicator">Bold disabled</div>
+    <button class="ital" id="ital" onclick="ital()">Italics</button><br>
+    <div class="i-indicator" id="i-indicator">Italics disabled</div>
+  </div>
+  <div class="middle">
+    <button class="raw" id="raw" onclick="raw()">Download raw document</button><br>
+    <input type="text" class="font" id="font" name="font" placeholder="font">
+    <button class="font-button" id="font-button" onclick="changeFont()">Change font</button><br>
+    <input type="text" class="font-size" id="font-size" name="font-size" placeholder="font-size">
+    <button class="font-size-button" id="font-size-button" onclick="changeFontSize()">Change font size</button><br>
+  </div>
+  <div class="bottom">
+    <button class="back" id="back" onclick="home()">Back</button>
+    <button class="import" id="import" onclick="imp()">Import raw document</button><br>
+  </div>
 </div>
-<div class="document">
+<div class="document" id="document">
   <textarea class="textarea-doc" id="textarea-doc" spellcheck="false"></textarea>
   <div class="formatted-doc" id="formatted-doc"></div>
   <div class="caret-doc" id="caret-doc"></div>

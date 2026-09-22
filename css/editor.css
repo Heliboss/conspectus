@@ -1,11 +1,26 @@
+body {
+  margin: 0px;
+  background-color: rgb(250, 244, 237);
+  display: flex;
+  justify-content: center;
+}
 .menu {
-  width: 99vw;
-  height: 6vh;
+  width: 99.227vw;
+  height: 60px;
+  background-color: rgb(40, 105, 131);
+  position: fixed;
+  z-index: 1;
+}
+.top,
+.middle,
+.bottom {
+  display: flex;
 }
 .document {
-  width: 98.6vw;
-  height: 92vh;
+  width: 8.27in;
+  height: 11.69in;
   position: relative;
+  top: 60px;
 }
 textarea {
   resize: none;
@@ -14,10 +29,9 @@ textarea {
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
-  bottom: 0;
   background: transparent;
   color: transparent;
+  overflow: hidden;
 }
 .formatted-doc,
 .caret-doc {
@@ -26,7 +40,7 @@ textarea {
   position: absolute;
   margin: 10px;
   z-index: -1;
-  white-space: pre;
+  white-space: pre-wrap;
 }
 .invis,
 .caret {
@@ -34,4 +48,15 @@ textarea {
 }
 .caret {
   background: rgba(0, 0, 0, 0.25);
+}
+.b-indicator,
+.i-indicator {
+  background-color: rgb(255, 255, 255);
+}
+.error {
+  color: rgb(180, 99, 122);
+  background-color: rgb(70, 66, 97);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
