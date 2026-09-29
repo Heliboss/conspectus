@@ -51,6 +51,10 @@ function login() {
     window.location.href = "success.html";
   }
 }
+function success() {
+  if (localStorage.getItem("login") != null) window.location.href = "docs.html";
+  else home();
+}
 function logout() {
   localStorage.removeItem("login");
   localStorage.setItem("success", "You've successfully logged out.");
@@ -158,3 +162,9 @@ function raw() {
   URL.revokeObjectURL(url);
 }
 const editor = () => (window.location.href = "editor.html");
+function menu() {
+  const menu = document.getElementById("saved-documents");
+  if (menu.style.zIndex != 2) menu.style.zIndex = 2;
+  else menu.style.zIndex = 0;
+}
+const docs = () => (window.location.href = "docs.html");

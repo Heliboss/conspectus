@@ -27,7 +27,7 @@
     <button class="font-size-button" id="font-size-button" onclick="changeFontSize()">Change font size</button><br>
   </div>
   <div class="bottom">
-    <button class="back" id="back" onclick="home()">Back</button>
+    <button class="back" id="back" onclick="success()">Back</button>
     <button class="import" id="import" onclick="imp()">Import raw document</button><br>
   </div>
 </div>
@@ -38,4 +38,12 @@
 </div>
 <script src="js/editor.js"></script>
 </body>
+<script>
+if (localStorage.getItem("doc") != null) {
+  document.getElementById("textarea-doc").innerText = localStorage.getItem("doc");
+  localStorage.removeItem("doc");
+  renderText();
+  renderCaret();
+}
+</script>
 </html>

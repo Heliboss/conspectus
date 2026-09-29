@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conspectus</title>
+<link rel="stylesheet" href="css/index.css">
+<style>
+body,
+.bg,
+.bottom {
+  background-color: rgb(244, 237, 232);
+}
+.registration {
+  height: 106.1%;
+}
+.top-left {
+  position: absolute;
+  top: 160px;
+  margin: 0px 0px 0px 200px;
+  padding: 0px 0px 100px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+}
+.top-left div {
+  font-family: sans;
+  font-size: 8pt;
+  background-color: rgb(250, 244, 237);
+  height: 400px;
+  aspect-ratio: 8.27 / 11.69;
+  overflow: hidden;
+}
+.top-left div:hover {
+  transform: scale(1.1);
+}
+.doctitle {
+  font-size: 18px;
+  font-variant: small-caps;
+  display: block;
+  text-align: center;
+}
+.create {
+  font-size: 64px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottom {
+  color: transparent;
+}
+</style>
+<script src="js/buttons.js"></script>
+</head>
+<body>
+<div class="bg"></div>
+<div class="main">
+  <div class="bar" id="bar">
+    <button class="hamburger" id="hamburger" onclick="menu()">≡</button>
+    <div class="credentials">
+      <div class="error-login" id="error-login"></div>
+      <div class="username-password" id="username-password">
+        <input type="text" class="username" id="username-login" name="username" placeholder="Username">
+        <button class="login" id="login" onclick="login()">Login</button><br>
+        <input type="password" class="password" id="password-login" name="password" placeholder="Password">
+        <button class="register" id="register" onclick="register(true)">Register</button><br>
+      </div>
+      <div class="logged-in" id="logged-in">
+        <div class="name" id="name"></div>
+        <button class="logout" id="logout" onclick="logout()">Logout</button>
+      </div>
+      <div class="profile">
+        <img src="images/glorp.png">
+      </div>
+    </div>
+  </div>
+  <div class="top">
+    <div class="top-left" id="top-left">
+      <div id="create"><span class="create">+</span></div>
+    </div>
+  </div>
+  <!-- ignore; the page width messes up without this and i'm too lazy to fix it -->
+  <div class="bottom">
+    <div class="about">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <div class="why">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <div class="what">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+</div>
+<div class="registration" id="registration">
+  <div class="registration-panel">
+    <button class="registration-panel-x" id="registration-panel-x" onclick="register(false)">X</button>
+    <div class="registration-panel-main">
+      <img src="images/logo.png" class="registration-title">
+      <input type="text" class="username" id="username-register" name="username" placeholder="Username">
+      <input type="password" class="password" id="password-register" name="password" placeholder="Password">
+      <button class="registration-button" id="registration-button" onclick="createAccount()">Create new account</button>
+      <div class="error" id="error"></div>
+    </div>
+  </div>
+</div>
+<div class="saved-documents" id="saved-documents">
+  <div class="saved-documents-panel">
+    <div class="saved-documents-panel-main">
+      <div><button class="next" id="next" onclick="home()">Home</button></div>
+      <div><button class="current" id="current">Saved Documents</button></div>
+    </div>
+  </div>
+</div>
+<script>
+// login
+const username = localStorage.getItem("login");
+if (username === null) {
+  document.getElementById("username-password").style.zIndex = 1;
+} else {
+  document.getElementById("logged-in").style.zIndex = 1;
+  document.getElementById("name").innerText = username;
+}
+// menu dropdown
+document.getElementById("current").style.backgroundColor = "#b4637a";
+// saved documents
+const main = document.getElementById("top-left");
+for (let i = 0; i < localStorage.length; i++) {
+  const a = localStorage.key(i);
+  const username = localStorage.getItem("login")
+  if (a.startsWith(username)) {
+    const div = document.createElement("div");
+    div.innerHTML = `<span class="doctitle">${a.slice(username.length)}</span>${localStorage.getItem(a)
+    .replace(/\n/g, "<br>")
+    .replace(//g, "<b>")
+    .replace(//g, "</b>")
+    .replace(//g, "<i>")
+    .replace(//g, "</i>")}`;
+    div.id = "saveddoc";
+    main.appendChild(div);
+  }
+}
+// clickable documents
+const doc = document.getElementById("saveddoc");
+doc.addEventListener("click", function() {
+  localStorage.setItem("doc", doc.innerText);
+  window.location.href = "editor.html";
+})
+// new doc
+const create = document.getElementById("create");
+create.addEventListener("click", function() {
+  window.location.href = "editor.html";
+})
+</script>
+</body>
+</html>
