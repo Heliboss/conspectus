@@ -141,15 +141,15 @@ for (let i = 0; i < localStorage.length; i++) {
     main.appendChild(div);
   }
 }
+// new doc
+const create = document.getElementById("create");
+create.addEventListener("click", function() {
+  window.location.href = "editor.html";
+})
 // clickable documents
 const doc = document.getElementById("saveddoc");
 doc.addEventListener("click", function() {
   localStorage.setItem("doc", doc.innerText);
-  window.location.href = "editor.html";
-})
-// new doc
-const create = document.getElementById("create");
-create.addEventListener("click", function() {
   window.location.href = "editor.html";
 })
 </script>
