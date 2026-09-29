@@ -148,7 +148,7 @@ body {
   font-size: 22pt;
 }
 .registration {
-  height: 106.4%;
+  height: 106.1%;
   width: 100%;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.15);
@@ -203,7 +203,7 @@ body {
   justify-content: center;
 }
 .vim-motions {
-  height: 106.4%;
+  height: 106.1%;
   width: 100%;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.15);
