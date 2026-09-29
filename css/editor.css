@@ -16,6 +16,23 @@ body {
 .bottom {
   display: flex;
 }
+.top button,
+.top input,
+.bindicator,
+.iindicator,
+.middle button,
+.middle input,
+.bottom button {
+  background-color: rgb(250, 244, 237);
+  border-style: solid;
+  border-width: 1px;
+  padding-bottom: 1.3px;
+}
+.top button:active,
+.middle button:active,
+.bottom button:active {
+  transform: scale(1, 0.95);
+}
 .document {
   width: 8.27in;
   height: 11.69in;
