@@ -72,6 +72,7 @@ function exp() {
   document.getElementById("document").style.top = "0px";
   document.getElementById("textarea-doc").style.border = "none";
   document.getElementById("caret").style.background = "transparent";
+  document.getElementById("error").innerText = "";
   window.print();
   document.getElementById("menu").style.top = "0px";
   document.getElementById("b-indicator").style.color = "rgb(0, 0, 0)";
