@@ -11,6 +11,12 @@ body,
 .bottom {
   background-color: rgb(244, 237, 232);
 }
+.bg {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 1;
+}
 .top-left {
   position: absolute;
   top: 160px;
@@ -19,6 +25,7 @@ body,
   display: flex;
   flex-wrap: wrap;
   gap: 100px;
+  z-index: 2;
 }
 .top-left div {
   font-family: sans;
@@ -51,7 +58,6 @@ body,
 <script src="js/buttons.js"></script>
 </head>
 <body>
-<div class="bg"></div>
 <div class="main">
   <div class="bar" id="bar">
     <button class="hamburger" id="hamburger" onclick="menu()">≡</button>
@@ -73,6 +79,7 @@ body,
     </div>
   </div>
   <div class="top">
+    <div class="bg"></div>
     <div class="top-left" id="top-left">
       <div id="create"><span class="create">+</span></div>
     </div>
