@@ -86,7 +86,7 @@ body {
 }
 .top-left {
   font-size: 14pt;
-  margin: 0px 0px 0px 16vw;
+  margin: 0px 0px 0px 10vw;
   flex: 1;
 }
 .logo {
@@ -111,17 +111,17 @@ body {
   background-color: rgb(86, 148, 159);
 }
 .top-right {
-  font-size: 22pt;
+  font-size: 18pt;
   margin: 0px 200px 0px 0px;
   flex: 2;
 }
 .quote {
-  min-height: 24pt;
+  min-height: 20pt;
 }
 .bottom {
   height: 41.2vh;
   background-color: rgb(250, 244, 237);
-  font-size: 16pt;
+  font-size: 14pt;
   display: flex;
   justify-content: space-between;
   gap: 100px;
@@ -130,7 +130,7 @@ body {
   font-size: 22pt;
 }
 .about {
-  margin: 0px 0px 0px 16vw;
+  margin: 0px 0px 0px 10vw;
   flex: 1;
 }
 .why {
@@ -148,9 +148,9 @@ body {
   font-size: 22pt;
 }
 .registration {
-  height: 106.1%;
+  height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
@@ -203,9 +203,9 @@ body {
   justify-content: center;
 }
 .vim-motions {
-  height: 106.1%;
+  height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;

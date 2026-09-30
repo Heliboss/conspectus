@@ -5,7 +5,7 @@ body {
   justify-content: center;
 }
 .menu {
-  width: 99.227vw;
+  width: 100vw;
   height: 60px;
   background-color: rgb(40, 105, 131);
   position: fixed;
@@ -26,7 +26,6 @@ body {
   background-color: rgb(250, 244, 237);
   border-style: solid;
   border-width: 1px;
-  padding-bottom: 1.3px;
 }
 .top button:active,
 .middle button:active,
